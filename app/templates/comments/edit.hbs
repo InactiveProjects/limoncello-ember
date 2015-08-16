@@ -1,0 +1,11 @@
+<form>
+    Body {{input value=model.body}}
+    Site ???
+  {{#unless model.isNew}}
+      <button {{ action "delete" model }}>Delete</button>
+  {{/unless}}
+    <button {{ action "cancel" model }}>Cancel</button>
+  {{#if model.hasDirtyAttributes}}
+      <button {{ action "save" model }}>Save</button>
+  {{/if}}
+</form>

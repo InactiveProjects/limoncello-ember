@@ -1,0 +1,10 @@
+{{#if model}}
+    Comments list {{link-to "New" "comments.new" tagName="button"}}
+    <ul>
+      {{#each model as |comment|}}
+          <li>{{comment.id}}. {{comment.body}} {{#link-to 'comments.edit' comment tagName='button'}}Edit{{/link-to}}</li>
+      {{/each}}
+    </ul>
+{{else}}
+    No comments
+{{/if}}

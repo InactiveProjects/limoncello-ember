@@ -1,0 +1,12 @@
+<form>
+    First Name {{input value=model.first}}
+    Last Name {{input value=model.last}}
+    Twitter {{input value=model.twitter}}
+  {{#unless model.isNew}}
+      <button {{ action "delete" model }}>Delete</button>
+  {{/unless}}
+    <button {{ action "cancel" model }}>Cancel</button>
+  {{#if model.hasDirtyAttributes}}
+      <button {{ action "save" model }}>Save</button>
+  {{/if}}
+</form>
