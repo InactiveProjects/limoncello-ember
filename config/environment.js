@@ -1,7 +1,8 @@
 /* jshint node: true */
 
-const API_HOST = 'http://46.101.189.195:80';
+const API_HOST = 'http://46.101.189.195:8080';
 const API_NAMESPACE = 'api/v1';
+const API_LOGIN_BASIC = 'login/basic';
 
 module.exports = function(environment) {
   var ENV = {
@@ -23,7 +24,8 @@ module.exports = function(environment) {
 
     API: {
       host: API_HOST,
-      namespace: API_NAMESPACE
+      namespace: API_NAMESPACE,
+      loginBasic: API_LOGIN_BASIC
     }
   };
 
@@ -53,12 +55,19 @@ module.exports = function(environment) {
 
   ENV.contentSecurityPolicy = {
     'default-src': "'none'",
-    'script-src' : "'self' 'unsafe-eval'",
+    'script-src' : "'self'",
     'font-src'   : "'self'",
     'connect-src': "'self' " + API_HOST,
     'img-src'    : "'self' data:",
     'style-src'  : "'self'",
     'media-src'  : "'self'"
+  };
+
+  ENV['simple-auth'] = {
+    authorizer: 'simple-auth-authorizer:oauth2-bearer',
+    store: 'simple-auth-session-store:local-storage',
+    //store: 'simple-auth-session-store:ephemeral',
+    crossOriginWhitelist: [API_HOST]
   };
 
   return ENV;

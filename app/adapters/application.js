@@ -4,6 +4,7 @@ import environment from 'limoncello-ember/config/environment';
 export default DS.JSONAPIAdapter.extend({
 
   host: environment.API.host,
-  namespace: environment.API.namespace
+  namespace: environment.API.namespace,
+  shouldReloadAll: () => true
 
 });

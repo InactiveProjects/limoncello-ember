@@ -37,6 +37,8 @@ Router.map(function() {
     this.route('edit', { path: '/:user_id/edit' });
   });
 
+  this.route('login');
+
 });
 
 export default Router;

@@ -1,0 +1,7 @@
+<form {{action 'authenticate' on='submit'}}>
+    <label for="identification">Login</label>
+  {{input id='login' placeholder='Login' value=login}}
+    <label for="password">Password</label>
+  {{input id='password' placeholder='Password' type='password' value=password}}
+    <button {{ action "login" }} class="success">Login</button>
+</form>

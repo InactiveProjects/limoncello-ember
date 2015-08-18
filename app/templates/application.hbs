@@ -1,12 +1,16 @@
-<h2 id="title">Welcome to Limoncello-Ember</h2>
-
-<ul>
-    <li>{{#link-to 'index'}}Home{{/link-to}}</li>
-    <li>{{#link-to 'authors'}}Authors{{/link-to}}</li>
-    <li>{{#link-to 'sites'}}Sites{{/link-to}}</li>
-    <li>{{#link-to 'users'}}Users{{/link-to}}</li>
-    <li>{{#link-to 'comments'}}Comments (broken: no relationship){{/link-to}}</li>
-    <li>{{#link-to 'posts'}}Posts (broken: no relationships){{/link-to}}</li>
-</ul>
-
-{{outlet}}
+<nav>
+    <div class="menu">
+          {{#link-to 'index' class=""}}Home{{/link-to}}
+          {{#link-to 'authors'}}Authors{{/link-to}}
+          {{#link-to 'sites'}}Sites{{/link-to}}
+          {{#link-to 'users'}}Users{{/link-to}}
+          {{#link-to 'comments'}}Comments (broken: no relationship){{/link-to}}
+          {{#link-to 'posts'}}Posts (broken: no relationships){{/link-to}}
+      {{#if session.isAuthenticated}}
+            <button {{ action "invalidateSession" }} class="error">Logout</button>
+        {{/if}}
+    </div>
+</nav>
+<main>
+  {{outlet}}
+</main>
