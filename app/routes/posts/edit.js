@@ -4,24 +4,14 @@ export default Ember.Route.extend({
 
   templateName: 'posts.edit',
 
-  model() {
+  model(params) {
     return Ember.RSVP.hash({
-      post: this.store.createRecord('post'),
+      post: this.store.peekRecord('post', params.post_id),
       sites: this.store.findAll('site'),
       authors: this.store.findAll('author')
     }).then(function (hash) {
-      const firstSite = hash.sites.objectAt(0);
-      if (firstSite !== undefined) {
-        hash.post.set('site', firstSite);
-      }
-
-      const firstAuthor = hash.authors.objectAt(0);
-      if (firstAuthor !== undefined) {
-        hash.post.set('author', firstAuthor);
-      }
-
-      hash.selectedSite = firstSite;
-      hash.selectedAuthor = firstAuthor;
+      hash.selectedSite = hash.post.get('site');
+      hash.selectedAuthor = hash.post.get('author');
 
       return Ember.RSVP.hash(hash);
     });

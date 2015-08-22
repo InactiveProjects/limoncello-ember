@@ -1,10 +1,13 @@
 {{#if model}}
-    Authors list {{link-to "New" "authors.new" tagName="button"}}
-    <ul>
-      {{#each model as |author|}}
-          <li>{{author.id}}. {{author.first}} {{author.last}} {{#link-to 'authors.edit' author tagName='button'}}Edit{{/link-to}}</li>
-      {{/each}}
-    </ul>
+  <h3>Authors</h3>
+  <ul>
+    {{#each model as |author|}}
+      {{#unless author.isNew}}
+        <li>{{author.id}}. {{author.first}} {{author.last}} {{#link-to 'authors.edit' author tagName='button'}}Edit{{/link-to}}</li>
+      {{/unless}}
+    {{/each}}
+  </ul>
 {{else}}
-    No authors
+  No authors
 {{/if}}
+{{link-to "New" "authors.new" tagName="button"}}

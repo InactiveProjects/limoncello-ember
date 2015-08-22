@@ -4,17 +4,12 @@ export default Ember.Route.extend({
 
   templateName: 'comments.edit',
 
-  model() {
+  model(params) {
     return Ember.RSVP.hash({
-      comment: this.store.createRecord('comment'),
+      comment: this.store.peekRecord('comment', params.comment_id),
       posts: this.store.findAll('post')
     }).then(function (hash) {
-      const firstPost = hash.posts.objectAt(0);
-      if (firstPost !== undefined) {
-        hash.comment.set('post', firstPost);
-      }
-
-      hash.selectedPost = firstPost;
+      hash.selectedPost = hash.comment.get('post');
 
       return Ember.RSVP.hash(hash);
     });

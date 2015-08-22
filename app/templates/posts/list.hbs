@@ -1,10 +1,13 @@
 {{#if model}}
-    Posts list {{link-to "New" "posts.new" tagName="button"}}
-    <ul>
-      {{#each model as |post|}}
-          <li>{{post.id}}. {{post.title}} {{post.body}} {{#link-to 'posts.edit' post tagName='button'}}Edit{{/link-to}}</li>
-      {{/each}}
-    </ul>
+  <h3>Posts</h3>
+  <ul>
+    {{#each model as |post|}}
+      {{#unless post.isNew}}
+        <li>{{post.id}}. {{post.title}} {{#link-to 'posts.edit' post.id tagName='button'}}Edit{{/link-to}}</li>
+      {{/unless}}
+    {{/each}}
+  </ul>
 {{else}}
-    No posts
+  No posts
 {{/if}}
+{{link-to "New" "posts.new" tagName="button"}}

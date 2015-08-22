@@ -1,10 +1,13 @@
 {{#if model}}
-    Users list {{link-to "New" "users.new" tagName="button"}}
-    <ul>
-      {{#each model as |user|}}
-          <li>{{user.id}}. {{user.name}} {{user.email}} {{#link-to 'users.edit' user tagName='button'}}Edit{{/link-to}}</li>
-      {{/each}}
-    </ul>
+  <h3>Users</h3>
+  <ul>
+    {{#each model as |user|}}
+      {{#unless user.isNew}}
+        <li>{{user.id}}. {{user.name}} {{user.email}} {{#link-to 'users.edit' user tagName='button'}}Edit{{/link-to}}</li>
+      {{/unless}}
+    {{/each}}
+  </ul>
 {{else}}
-    No users
+  No users
 {{/if}}
+{{link-to "New" "users.new" tagName="button"}}

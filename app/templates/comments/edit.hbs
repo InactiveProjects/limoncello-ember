@@ -1,11 +1,18 @@
 <form>
-    Body {{input value=model.body}}
-    Site ???
-  {{#unless model.isNew}}
-      <button {{ action "delete" model }} class="error">Delete</button>
+  Body {{input value=model.comment.body}}
+  Post {{#x-select value=model.selectedPost action="selectPost"}}
+    {{#each model.posts as |post|}}
+      {{#x-option value=post}}{{post.title}}{{/x-option}}
+    {{/each}}
+  {{/x-select}}
+
+  {{#unless model.comment.isNew}}
+    <button {{ action "delete" model }} class="error">Delete</button>
   {{/unless}}
     <button {{ action "cancel" model }} class="warning">Cancel</button>
-  {{#if model.hasDirtyAttributes}}
+  {{#if (or model.comment.hasDirtyAttributes model.relationshipsDirty)}}
+    {{#unless model.comment.isSaving}}
       <button {{ action "save" model }} class="success">Save</button>
+    {{/unless}}
   {{/if}}
 </form>

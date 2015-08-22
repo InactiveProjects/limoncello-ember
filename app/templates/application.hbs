@@ -1,16 +1,23 @@
 <nav>
-    <div class="menu">
-          {{#link-to 'index' class=""}}Home{{/link-to}}
-          {{#link-to 'authors'}}Authors{{/link-to}}
-          {{#link-to 'sites'}}Sites{{/link-to}}
-          {{#link-to 'users'}}Users{{/link-to}}
-          {{#link-to 'comments'}}Comments (broken: no relationship){{/link-to}}
-          {{#link-to 'posts'}}Posts (broken: no relationships){{/link-to}}
-      {{#if session.isAuthenticated}}
-            <button {{ action "invalidateSession" }} class="error">Logout</button>
-        {{/if}}
-    </div>
+  <div class="menu">
+    {{#if session.isAuthenticated}}
+      {{#link-to 'sites'}}Sites{{/link-to}}
+      {{#link-to 'authors'}}Authors{{/link-to}}
+      {{#link-to 'posts'}}Posts{{/link-to}}
+      {{#link-to 'comments'}}Comments{{/link-to}}
+      {{#link-to 'users'}}Users{{/link-to}}
+      <button {{ action "invalidateSession" }} class="error">Logout</button>
+    {{else}}
+      {{#link-to 'index'}}Home{{/link-to}}
+      {{#link-to 'login'}}Login{{/link-to}}
+    {{/if}}
+  </div>
 </nav>
 <main>
   {{outlet}}
 </main>
+{{#if session.isAuthenticated}}
+  <footer>
+    If you like this JSON API demo please star <a href="https://github.com/neomerx/json-api" target="_blank">the project on github</a>. Thank you for your support.
+  </footer>
+{{/if}}

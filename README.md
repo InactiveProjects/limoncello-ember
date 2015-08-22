@@ -1,6 +1,13 @@
 ## Limoncello Ember
 
-The application is a client application for JSON-API quick start server application [Limoncello Collins](https://github.com/neomerx/limoncello-collins) and [Limoncello Shot](https://github.com/neomerx/limoncello-shot).
+This is a client application for [JSON API](http://jsonapi.org/) quick start server applications [Limoncello Collins](https://github.com/neomerx/limoncello-collins) and [Limoncello Shot](https://github.com/neomerx/limoncello-shot).
+
+It supports
+- CRUD operations for Authors, Comments, Posts, Sites and Users.
+- Cross-origin requests (CORS) to API server.
+- Server login (Basic Auth) and API authentication (JWT Bearer).
+
+![App screen-shot](img/screenshot.png)
 
 ### Prerequisites
 
@@ -10,7 +17,7 @@ You will need the following things properly installed on your computer.
 * [Node.js](http://nodejs.org/) (with NPM)
 * [Bower](http://bower.io/)
 * [Ember CLI](http://www.ember-cli.com/)
-* [PhantomJS](http://phantomjs.org/)
+* [PhantomJS](http://phantomjs.org/) (for tests only)
 
 ### Installation
 
@@ -34,6 +41,10 @@ You will need the following things properly installed on your computer.
 
 * `ember build` (development)
 * `ember build --environment production` (production)
+
+### Credits
+
+I would like to especially thank [Christopher](https://github.com/lindyhopchris) for his invaluable help and advice.
 
 ### Licence
 

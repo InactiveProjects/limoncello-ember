@@ -1,6 +1,12 @@
 import Ember from 'ember';
 import AuthenticatedRouteMixin from 'simple-auth/mixins/authenticated-route-mixin';
 
+const ROUTE_COMMENTS_LIST = 'comments.list';
+
+const errorHandler = (reason) => {
+  Ember.Logger.error('Error:', reason.errors);
+};
+
 export default Ember.Route.extend(AuthenticatedRouteMixin, {
 
   model() {
@@ -8,29 +14,26 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
   },
 
   actions: {
-
     save(model) {
-      model.save().then(() => {
-          this.transitionTo('comments.list');
-        },
-        (reason) => {
-          console.error(reason);
-        });
+      model
+        .comment
+          .set('post', model.selectedPost)
+          .save()
+          .then(() => {
+            this.transitionTo(ROUTE_COMMENTS_LIST);
+          }, errorHandler);
     },
 
     cancel(model) {
-      model.rollbackAttributes();
-      this.transitionTo('comments.list');
+      model.comment.rollbackAttributes();
+      this.transitionTo(ROUTE_COMMENTS_LIST);
     },
 
     delete(model) {
-      model.deleteRecord();
-      model.save().then(() => {
-          this.transitionTo('comments.list');
-        },
-        (reason) => {
-          console.log(reason);
-        });
+      model.comment.deleteRecord();
+      model.comment.save().then(() => {
+          this.transitionTo(ROUTE_COMMENTS_LIST);
+        }, errorHandler);
     }
 
   }

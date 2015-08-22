@@ -1,6 +1,8 @@
 import Ember from 'ember';
 import AuthenticatedRouteMixin from 'simple-auth/mixins/authenticated-route-mixin';
 
+const ROUTE_AUTHORS_LIST = 'authors.list';
+
 export default Ember.Route.extend(AuthenticatedRouteMixin, {
 
   model() {
@@ -11,7 +13,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
 
     save(model) {
       model.save().then(() => {
-          this.transitionTo('authors.list');
+          this.transitionTo(ROUTE_AUTHORS_LIST);
         },
         (reason) => {
           console.error(reason);
@@ -20,13 +22,13 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
 
     cancel(model) {
       model.rollbackAttributes();
-      this.transitionTo('authors.list');
+      this.transitionTo(ROUTE_AUTHORS_LIST);
     },
 
     delete(model) {
       model.deleteRecord();
       model.save().then(() => {
-          this.transitionTo('authors.list');
+          this.transitionTo(ROUTE_AUTHORS_LIST);
         },
         (reason) => {
           console.log(reason);

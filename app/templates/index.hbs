@@ -1,0 +1,18 @@
+<div class="post">
+  {{#unless session.isAuthenticated}}
+    <p>
+      This is a client application for JSON-API quick start server applications <a href="https://github.com/neomerx/limoncello-collins" target="_blank">Limoncello Collins</a> and <a href="https://github.com/neomerx/limoncello-shot" target="_blank">Limoncello Shot</a>.
+    </p>
+    <p>
+        By default it connects to server API at <a href="http://localhost:8888" target="_blank">localhost:8888</a>
+    </p>
+    <p>
+      <div>Default login: user@example.com</div>
+      <div>Default password: password</div>
+    </p>
+  {{else}}
+    <p>
+      You are logged in and can add/edit/remove Sites, Authors, Posts, Comments and Users.
+    </p>
+  {{/unless}}
+</div>

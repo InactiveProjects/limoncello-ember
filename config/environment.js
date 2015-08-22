@@ -1,6 +1,6 @@
 /* jshint node: true */
 
-const API_HOST = 'http://46.101.189.195:8080';
+const API_HOST = 'http://localhost:8888';
 const API_NAMESPACE = 'api/v1';
 const API_LOGIN_BASIC = 'login/basic';
 

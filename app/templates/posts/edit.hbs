@@ -1,13 +1,24 @@
 <form>
-    Title {{input value=model.title}}
-    Body {{input value=model.body}}
-    Author ???
-    Site ???
+  Title {{input value=model.post.title}}
+  Body {{input value=model.post.body}}
+  Site {{#x-select value=model.selectedSite action="selectSite"}}
+    {{#each model.sites as |site|}}
+      {{#x-option value=site}}{{site.name}}{{/x-option}}
+    {{/each}}
+  {{/x-select}}
+  Author {{#x-select value=model.selectedAuthor action="selectAuthor"}}
+    {{#each model.authors as |author|}}
+      {{#x-option value=author}}{{author.first}} {{author.last}}{{/x-option}}
+    {{/each}}
+  {{/x-select}}
+
   {{#unless model.isNew}}
-      <button {{ action "delete" model }} class="error">Delete</button>
+    <button {{ action "delete" model }} class="error">Delete</button>
   {{/unless}}
     <button {{ action "cancel" model }} class="warning">Cancel</button>
-  {{#if model.hasDirtyAttributes}}
+  {{#if (or model.post.hasDirtyAttributes model.relationshipsDirty)}}
+    {{#unless model.post.isSaving}}
       <button {{ action "save" model }} class="success">Save</button>
+    {{/unless}}
   {{/if}}
 </form>

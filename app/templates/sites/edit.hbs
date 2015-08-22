@@ -1,10 +1,12 @@
 <form>
-    Name {{input value=model.name}}
+  Name {{input value=model.name}}
   {{#unless model.isNew}}
-      <button {{ action "delete" model }} class="error">Delete</button>
+    <button {{ action "delete" model }} class="error">Delete</button>
   {{/unless}}
     <button {{ action "cancel" model }} class="warning">Cancel</button>
   {{#if model.hasDirtyAttributes}}
+    {{#unless model.isSaving}}
       <button {{ action "save" model }} class="success">Save</button>
+    {{/unless}}
   {{/if}}
 </form>

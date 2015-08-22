@@ -1,10 +1,13 @@
 {{#if model}}
-    Sites list {{link-to "New" "sites.new" tagName="button"}}
-    <ul>
-      {{#each model as |site|}}
-          <li>{{site.id}}. {{site.name}} {{#link-to 'sites.edit' site tagName='button'}}Edit{{/link-to}}</li>
-      {{/each}}
-    </ul>
+  <h3>Sites</h3>
+  <ul>
+    {{#each model as |site|}}
+      {{#unless site.isNew}}
+        <li>{{site.id}}. {{site.name}} {{#link-to 'sites.edit' site tagName='button'}}Edit{{/link-to}}</li>
+      {{/unless}}
+    {{/each}}
+  </ul>
 {{else}}
-    No sites
+  No sites
 {{/if}}
+{{link-to "New" "sites.new" tagName="button"}}
