@@ -1,6 +1,6 @@
 ## Limoncello Ember
 
-This is a client application for [JSON API](http://jsonapi.org/) quick start server applications [Limoncello Collins](https://github.com/neomerx/limoncello-collins) and [Limoncello Shot](https://github.com/neomerx/limoncello-shot).
+This is a client application for [JSON API](http://jsonapi.org/) quick start server applications [Limoncello Collins](https://github.com/neomerx/limoncello-collins) and [Limoncello Shot](https://github.com/neomerx/limoncello-shot) (5.1 branches).
 
 It supports
 - CRUD operations for Authors, Comments, Posts, Sites and Users.
